@@ -171,12 +171,11 @@ export const handler = async function (argv) {
   }
 
   let cfgFiltered
-console.log(argv)
   argv.key =
     argv.key ||
     Utils._.get(argv, 'semo-plugin-ssh.key') ||
     ''
-
+  argv.key = String(argv.key)
   await fs.ensureFileSync(CFG_PATH)
   let cfgData = fs.readFileSync(CFG_PATH, 'utf-8')
   if (!cfgData) {
