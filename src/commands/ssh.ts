@@ -148,10 +148,15 @@ const save = async (account, key, argv, cfgData, chooseAccountIndex, refresh = f
   fs.writeFileSync(CFG_PATH, cfgData.join("\n"))
 }
 
-export const command = 'ssh <op> [keywords..]'
+export const plugin = 'ssh'
+export const command = 'ssh [keywords..]'
 export const desc = 'SSH tool, includes add/edit, delete, list|ls, login|to operations'
 
 export const builder = function (yargs) {
+  yargs.option('op', {
+    default: false,
+    describe: 'Set operatioin, default is login, support: add, edit, list, ls, delete, login, to.',
+  })
   yargs.option('key', {
     default: false,
     describe: 'Key to be used to encrypt or decrypt ssh accounts.',
@@ -166,15 +171,14 @@ export const builder = function (yargs) {
 }
 
 export const handler = async function (argv) {
+  const { Utils } = argv.$semo
+  argv.op = argv.op || 'login'
   if (['add', 'edit', 'list', 'ls', 'delete', 'login', 'to'].indexOf(argv.op) === -1) {
     Utils.error(`Invalid operation: ${argv.op}!`)
   }
 
   let cfgFiltered
-  argv.key =
-    argv.key ||
-    Utils._.get(argv, 'semo-plugin-ssh.key') ||
-    ''
+  argv.key = Utils.pluginConfig('key', '')
   argv.key = String(argv.key)
   await fs.ensureFileSync(CFG_PATH)
   let cfgData = fs.readFileSync(CFG_PATH, 'utf-8')
