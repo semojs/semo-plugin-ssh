@@ -154,19 +154,14 @@ export const desc = 'SSH tool, includes add/edit, delete, list|ls, login|to oper
 
 export const builder = function (yargs) {
   yargs.option('op', {
-    default: false,
     describe: 'Set operatioin, default is login, support: add, edit, list, ls, delete, login, to.',
   })
   yargs.option('key', {
-    default: false,
     describe: 'Key to be used to encrypt or decrypt ssh accounts.',
-    alias: 'k'
   })
 
   yargs.option('opts', {
-    default: false,
     describe: 'Extra options for SSH login',
-    alias: 'o'
   })
 }
 
