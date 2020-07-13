@@ -184,7 +184,7 @@ export const handler = async function (argv) {
   }
 
   cfgFiltered = cfgData.filter(line => {
-    return argv.keywords.every(keyword => line.indexOf(keyword) > -1)
+    return argv.keywords && argv.keywords.every(keyword => line.indexOf(keyword) > -1)
   })
 
   if (argv.op === 'list' || argv.op === 'ls') {
