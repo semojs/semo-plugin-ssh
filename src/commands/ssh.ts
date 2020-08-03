@@ -6,7 +6,7 @@ const funcs = require('../common/funcs')
 const CFG_PATH = `${process.env.HOME}/.semo/.ssh-accounts`
 const CFG_TEMPLATE = 'ssh://${username}:${password}:${privateKeyFile}@${host}:${port} ${label}'
 const CFG_VIEW_TEMPLATE = 'ssh://${username}@${host}:${port} ${label}'
-const LOGIN_CMD = 'expect ${script} ${username} ${host} ${port} ${password} ${privateKeyFile} ${opts}'
+const LOGIN_CMD = 'expect ${script} ${username} ${host} ${port} \'${password}\' ${privateKeyFile} ${opts}'
 
 const deleteAndSave = async (cfgData, chooseAccountIndex) => {
   cfgData.splice(chooseAccountIndex, 1)
