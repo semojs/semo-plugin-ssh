@@ -7,3 +7,6 @@ extendDir: lib/extends
 extendMakeDir: src/extends
 hookDir: lib/hooks
 hookMakeDir: src/hooks
+
+# Just for test
+encryptKey: 7cd849f5a421a673ce29d1e29db806ae475b3ec9ae6794dfdf9a2ca891c64c84

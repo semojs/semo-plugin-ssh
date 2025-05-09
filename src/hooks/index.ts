@@ -1,8 +1,9 @@
-import * as funcs from '../common/funcs'
-import { Utils } from '@semo/core'
+import * as funcs from '../common/funcs.js'
 
-export const hook_repl = new Utils.Hook('semo', () => {
-  return {
-    ssh: funcs
-  }
-})
+export const hook_repl = {
+  semo: () => {
+    return {
+      ssh: funcs,
+    }
+  },
+}
